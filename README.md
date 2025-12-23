@@ -52,6 +52,18 @@ A metodologia adotada é de caráter experimental e exploratório, com foco no d
 
 ---
 
+### 2.3 Fonte dos Dados de Áudio
+
+Os arquivos de áudio no formato WAV utilizados durante o desenvolvimento, testes e validação do **Music Wave Visualizer** foram obtidos a partir do repositório público mantido pelo projeto *PDX CS Sound*.
+
+Esse repositório disponibiliza um conjunto de arquivos WAV de uso educacional, amplamente empregados em experimentos de processamento digital de sinais (DSP), visualização de áudio e ensino de computação musical.
+
+- Repositório de origem: https://github.com/pdx-cs-sound/wavs
+
+Os arquivos foram utilizados exclusivamente para fins acadêmicos e experimentais, sem qualquer modificação estrutural, servindo como insumo para validação da reprodução de áudio e sincronização da renderização gráfica da forma de onda.
+
+---
+
 ## 3. Análise Arquitetural
 
 ### 3.1 Visão Geral da Arquitetura
