@@ -4,20 +4,24 @@
              xmlns:skia="clr-namespace:SkiaSharp.Views.Maui.Controls;assembly=SkiaSharp.Views.Maui.Controls"
              x:Class="MusicWaveVisualizer.MainPage">
 
-    <VerticalStackLayout Padding="20" Spacing="20">
-
-        <Label Text="Music Wave Visualizer"
-               FontSize="24"
-               HorizontalOptions="Center" />
+    <VerticalStackLayout Padding="20" Spacing="12">
 
         <Button Text="Selecionar WAV"
                 Clicked="OnPickWavClicked" />
 
-        <skia:SKCanvasView
-            x:Name="WaveCanvas"
-            HeightRequest="250"
-            HorizontalOptions="Fill"
-            PaintSurface="OnPaintSurface" />
+        <!-- <MediaElement x:Name="Player" -->
+        <!--               AutoPlay="False" -->
+        <!--               HeightRequest="0" -->
+        <!--               ShouldShowPlaybackControls="False" /> -->
+
+        <skia:SKCanvasView x:Name="WaveCanvas"
+                           PaintSurface="OnPaintSurface"
+                           HeightRequest="300" />
+        
+        <Button Text="Sair da Aplicação"
+                BackgroundColor="#8B0000"
+                TextColor="White"
+                Clicked="OnExitClicked" />
 
     </VerticalStackLayout>
 </ContentPage>
