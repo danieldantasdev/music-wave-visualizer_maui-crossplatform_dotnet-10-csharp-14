@@ -9,11 +9,6 @@
         <Button Text="Selecionar WAV"
                 Clicked="OnPickWavClicked" />
 
-        <!-- <MediaElement x:Name="Player" -->
-        <!--               AutoPlay="False" -->
-        <!--               HeightRequest="0" -->
-        <!--               ShouldShowPlaybackControls="False" /> -->
-
         <skia:SKCanvasView x:Name="WaveCanvas"
                            PaintSurface="OnPaintSurface"
                            HeightRequest="300" />

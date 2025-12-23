@@ -82,6 +82,9 @@
 	  <Compile Update="Platforms\Android\ApplicationCloser.cs">
 	    <ExcludeFromCurrentConfiguration>true</ExcludeFromCurrentConfiguration>
 	  </Compile>
+	  <Compile Update="Platforms\MacCatalyst\MacAudioPlayer.cs">
+	    <ExcludeFromCurrentConfiguration>true</ExcludeFromCurrentConfiguration>
+	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>

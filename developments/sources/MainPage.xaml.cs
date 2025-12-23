@@ -9,11 +9,13 @@ public partial class MainPage : ContentPage
 {
     private readonly AudioSampleBuffer _sampleBuffer = new(1024);
     private readonly IApplicationCloser _appCloser;
+    private readonly IAudioPlayer _audioPlayer;
 
-    public MainPage(IApplicationCloser appCloser)
+    public MainPage(IApplicationCloser appCloser, IAudioPlayer audioPlayer)
     {
         InitializeComponent();
-        this._appCloser = appCloser;
+        _appCloser = appCloser;
+        _audioPlayer = audioPlayer;
 
         Device.StartTimer(TimeSpan.FromMilliseconds(16), () =>
         {
@@ -24,14 +26,11 @@ public partial class MainPage : ContentPage
 
     private async void OnPickWavClicked(object sender, EventArgs e)
     {
-        var result = await FilePicker.Default.PickAsync();
-        if (result == null)
-            return;
+        FileResult? result = await FilePicker.Default.PickAsync();
+        if (result == null) return;
 
-        var path = result.FullPath!;
-        
-        // Player.Source = path;
-        // Player.Play();
+        string path = result.FullPath!;
+        _audioPlayer.Play(path);
 
         Task.Run(() => StreamSamples(path));
     }

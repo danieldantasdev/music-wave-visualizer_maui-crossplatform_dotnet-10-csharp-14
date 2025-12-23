@@ -21,6 +21,7 @@ public static class MauiProgram
 			});
 
 		builder.Services.AddSingleton<IApplicationCloser, ApplicationCloser>();
+		builder.Services.AddSingleton<IAudioPlayer, MacAudioPlayer>();
 		
 #if DEBUG
 		builder.Logging.AddDebug();
