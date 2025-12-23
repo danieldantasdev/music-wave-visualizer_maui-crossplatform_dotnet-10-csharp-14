@@ -171,6 +171,8 @@ A aplicação suporta carregamento de arquivos WAV, reprodução automática, pa
 - Sincronização satisfatória entre áudio e visualização.
 - Execução cross-platform em diferentes sistemas operacionais.
 
+![Gráfico em tempo real da onda](analyses/outputs/music-wave-analyser.png)
+
 ---
 
 ### 5.2 Resultados Arquiteturais
