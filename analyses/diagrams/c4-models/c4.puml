@@ -1,13 +1,27 @@
 @startuml C4_Code
 skinparam classAttributeIconSize 0
 
+
 class MainPage {
     +OnPickWavClicked()
+    +OnPlayClicked()
+    +OnPauseClicked()
+    +OnStopClicked()
     +OnPaintSurface()
 }
 
-class MediaElement {
-    +Play()
+class WaveformRenderer {
+    +Draw(canvas, samples, width, height)
+}
+
+interface IAudioPlayer {
+    +Play(path)
+    +Pause()
+    +Stop()
+}
+
+class MacAudioPlayer {
+    +Play(path)
     +Pause()
     +Stop()
 }
@@ -17,20 +31,19 @@ class WavFileReader {
 }
 
 class AudioSampleBuffer {
-    -float[] buffer
-    -int index
+    -float[] _buffer
+    -int _index
     +Add(sample)
     +Snapshot(): float[]
 }
 
-class WaveformRenderer {
-    +Draw(canvas, samples, width, height)
-}
+MainPage --> IAudioPlayer : controla reprodução
+IAudioPlayer <|.. MacAudioPlayer : implementa
 
-MainPage --> MediaElement : controla
-MainPage --> WavFileReader : consome
-WavFileReader --> AudioSampleBuffer : escreve
-MainPage --> WaveformRenderer : solicita
-WaveformRenderer --> AudioSampleBuffer : lê
+MainPage --> WavFileReader : solicita leitura
+WavFileReader --> AudioSampleBuffer : escreve amostras
+
+MainPage --> WaveformRenderer : solicita renderização
+WaveformRenderer --> AudioSampleBuffer : consome snapshot
 
 @enduml
