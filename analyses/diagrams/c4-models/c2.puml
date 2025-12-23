@@ -1,0 +1,23 @@
+@startuml C4_Container
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+Person(user, "Usuário Final")
+
+System_Boundary(s1, "Music Wave Visualizer") {
+
+    Container(ui, "MAUI UI Layer","XAML + C#","Camada de interface gráfica e orquestração do fluxo da aplicação")
+
+    Container(player, "Audio Playback Engine",".NET MAUI MediaElement","Reprodução nativa de áudio WAV com suporte cross-platform")
+
+    Container(dsp, "DSP Engine","C#","Processamento digital de sinais e leitura progressiva de amostras PCM")
+
+    Container(renderer, "Graphics Renderer","SkiaSharp","Renderização da forma de onda em tempo quase real")
+}
+
+Rel(user, ui, "Interage")
+Rel(ui, player, "Controla reprodução")
+Rel(ui, dsp, "Solicita leitura de amostras")
+Rel(dsp, renderer, "Fornece amostras normalizadas")
+Rel(renderer, ui, "Renderiza no canvas")
+
+@enduml

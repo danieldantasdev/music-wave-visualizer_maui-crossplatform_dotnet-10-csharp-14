@@ -1,0 +1,10 @@
+@startuml C4_Context
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+
+Person(user, "Usuário Final", "Interage com a aplicação para selecionar e reproduzir arquivos WAV")
+
+System(waveviz, "Music Wave Visualizer", "Aplicação multimídia cross-platform para reprodução de áudio WAV e visualização gráfica da forma de onda em tempo quase real, utilizando .NET MAUI e SkiaSharp.")
+
+Rel(user, waveviz, "Seleciona arquivo WAV, controla reprodução e observa visualização")
+
+@enduml

@@ -1,0 +1,36 @@
+@startuml C4_Code
+skinparam classAttributeIconSize 0
+
+class MainPage {
+    +OnPickWavClicked()
+    +OnPaintSurface()
+}
+
+class MediaElement {
+    +Play()
+    +Pause()
+    +Stop()
+}
+
+class WavFileReader {
+    +ReadSamples(path): IEnumerable<float>
+}
+
+class AudioSampleBuffer {
+    -float[] buffer
+    -int index
+    +Add(sample)
+    +Snapshot(): float[]
+}
+
+class WaveformRenderer {
+    +Draw(canvas, samples, width, height)
+}
+
+MainPage --> MediaElement : controla
+MainPage --> WavFileReader : consome
+WavFileReader --> AudioSampleBuffer : escreve
+MainPage --> WaveformRenderer : solicita
+WaveformRenderer --> AudioSampleBuffer : lê
+
+@enduml

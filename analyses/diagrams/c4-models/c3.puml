@@ -1,0 +1,24 @@
+@startuml C4_Component
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+Container_Boundary(app, "Music Wave Visualizer (.NET MAUI)") {
+
+    Component(mainpage, "MainPage","ContentPage","Controlador principal da UI e ciclo de vida")
+
+    Component(media, "MediaElement","MAUI Control","Reprodução nativa de áudio")
+
+    Component(reader, "WavFileReader","C#","Leitura de arquivos WAV PCM e normalização de amostras")
+
+    Component(buffer, "AudioSampleBuffer","C#","Buffer circular para sincronização áudio–visual")
+    
+    Component(renderer, "WaveformRenderer","SkiaSharp","Desenho da forma de onda no canvas")
+
+}
+
+Rel(mainpage, media, "Inicia reprodução")
+Rel(mainpage, reader, "Inicia leitura progressiva")
+Rel(reader, buffer, "Insere amostras normalizadas")
+Rel(mainpage, renderer, "Solicita renderização")
+Rel(renderer, buffer, "Consome amostras")
+
+@enduml
