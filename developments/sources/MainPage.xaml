@@ -9,10 +9,23 @@
         <Button Text="Selecionar WAV"
                 Clicked="OnPickWavClicked" />
 
+        <HorizontalStackLayout Spacing="10">
+
+            <Button Text="Play ▶"
+                    Clicked="OnPlayClicked" />
+
+            <Button Text="Pause ⏸"
+                    Clicked="OnPauseClicked" />
+
+            <Button Text="Stop ⏹"
+                    Clicked="OnStopClicked" />
+
+        </HorizontalStackLayout>
+
         <skia:SKCanvasView x:Name="WaveCanvas"
                            PaintSurface="OnPaintSurface"
                            HeightRequest="300" />
-        
+
         <Button Text="Sair da Aplicação"
                 BackgroundColor="#8B0000"
                 TextColor="White"

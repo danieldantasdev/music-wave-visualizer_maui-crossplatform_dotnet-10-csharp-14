@@ -1,22 +1,34 @@
 namespace MusicWaveVisualizer.Audios;
 
-public sealed class AudioSampleBuffer
+public sealed class AudioSampleBuffer(int size)
 {
-    private readonly float[] _buffer;
-    private int _index;
-
-    public AudioSampleBuffer(int size)
-    {
-        _buffer = new float[size];
-    }
+    private readonly float[] _buffer = new float[size];
+    private int _index = 0;
+    private readonly object _lock = new();
 
     public void Add(float sample)
     {
-        _buffer[_index++ % _buffer.Length] = sample;
+        lock (_lock)
+        {
+            _buffer[_index] = sample;
+            _index = (_index + 1) % _buffer.Length;
+        }
     }
 
     public float[] Snapshot()
     {
-        return _buffer.ToArray();
+        lock (_lock)
+        {
+            return _buffer.ToArray();
+        }
+    }
+
+    public void Clear()
+    {
+        lock (_lock)
+        {
+            Array.Clear(_buffer, 0, _buffer.Length);
+            _index = 0;
+        }
     }
 }

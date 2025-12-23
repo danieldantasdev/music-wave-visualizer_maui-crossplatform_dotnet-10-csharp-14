@@ -6,20 +6,32 @@ namespace MusicWaveVisualizer;
 
 public class MacAudioPlayer : IAudioPlayer
 {
-    private AVAudioPlayer? player;
+    private AVAudioPlayer? _player;
+
+    public bool IsPlaying => _player?.Playing ?? false;
 
     public void Play(string filePath)
     {
-        player?.Stop();
+        if (_player == null)
+        {
+            var url = NSUrl.FromFilename(filePath);
+            _player = AVAudioPlayer.FromUrl(url);
+            _player.PrepareToPlay();
+        }
 
-        var url = NSUrl.FromFilename(filePath);
-        player = AVAudioPlayer.FromUrl(url);
-        player.PrepareToPlay();
-        player.Play();
+        _player.Play();
+    }
+
+    public void Pause()
+    {
+        _player?.Pause();
     }
 
     public void Stop()
     {
-        player?.Stop();
+        if (_player == null) return;
+
+        _player.Stop();
+        _player.CurrentTime = 0;
     }
 }
