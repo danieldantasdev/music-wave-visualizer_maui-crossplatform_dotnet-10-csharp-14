@@ -45,7 +45,7 @@ public partial class MainPage : ContentPage
 
             if (result == null)
             {
-                await DisplayAlert("Aviso", "Nenhum arquivo selecionado.", "OK");
+                await DisplayAlertAsync("Aviso", "Nenhum arquivo selecionado.", "OK");
                 return;
             }
 
@@ -62,11 +62,11 @@ public partial class MainPage : ContentPage
             if (audioReader != null)
                 Task.Run(() => StreamAudio(audioReader));
             
-            await DisplayAlert("Sucesso", "Tocando e visualizando WAV em tempo real!", "OK");
+            await DisplayAlertAsync("Sucesso", "Tocando e visualizando WAV em tempo real!", "OK");
         }
         catch (Exception ex)
         {
-            await DisplayAlert("Erro", ex.Message, "OK");
+            await DisplayAlertAsync("Erro", ex.Message, "OK");
         }
     }
     private void StreamAudio(AudioFileReader reader)
