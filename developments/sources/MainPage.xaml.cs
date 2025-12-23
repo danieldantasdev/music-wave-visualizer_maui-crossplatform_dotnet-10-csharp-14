@@ -49,10 +49,8 @@ public partial class MainPage : ContentPage
                 return;
             }
 
-            // Usa diretamente o caminho físico no Windows, Android ou iOS
             string filePath = result.FullPath ?? throw new Exception("Não foi possível obter o caminho do arquivo");
 
-            // Inicializa NAudio
             waveOut?.Dispose();
             audioReader?.Dispose();
 
